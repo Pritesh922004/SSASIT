@@ -463,13 +463,12 @@
 
     // Student Functions
     function viewAllStudents() {
-        window.location.href = 'Student';
-        // showSuccessMessage('View All Students functionality will be implemented soon!');
+        showSuccessMessage('View All Students functionality will be implemented soon!');
     }
 
     function addNewStudent() {
-        showSuccessMessage('Add New Student functionality will be implemented soon!');
-        console.log('Add New Student clicked');
+        window.location.href = 'entities?type=student';
+        // showSuccessMessage('Add New Student functionality will be implemented soon!');
     }
 
     // Faculty Functions
@@ -479,7 +478,8 @@
     }
 
     function addNewFaculty() {
-        showSuccessMessage('Add New Faculty functionality will be implemented soon!');
+        window.location.href = 'entities?type=faculty';
+        // showSuccessMessage('Add New Faculty functionality will be implemented soon!');
         console.log('Add New Faculty clicked');
     }
 

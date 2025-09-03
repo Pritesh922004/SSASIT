@@ -7,8 +7,6 @@ $success = "";
 // Handle logout success message
 if (isset($_GET['logout']) && $_GET['logout'] === 'success') {
     $success = "You have been successfully logged out.";
-    // sleep(1);
-    // $success = '';
 }
 
 
@@ -16,7 +14,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
     $Username = $_POST['username'];
     $Password = $_POST['password'];
-    
+
     if ($Username === 'admin' && $Password === 'Admin@123') {
 
         session_start();
@@ -24,14 +22,14 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         $_SESSION['User_Logged-In'] = true;
         $_SESSION['admin_username'] = $Username;
         $_SESSION['LAST_ACTIVITY'] = time();
-        
+
         header('Location: Dashboard');
 
         exit();
     } else {
         $error = "Invalid Username or Password";
     }
-    
+
 }
 
 ?>

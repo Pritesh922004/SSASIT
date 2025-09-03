@@ -7,16 +7,19 @@ $path = parse_url($request_uri, PHP_URL_PATH);
 
 switch ($path) {
 
-    case '/Collage%20Project/Admin/Dashboard':
+    case '/SSASIT/Admin/Dashboard':
         require 'Pages/Dashboard.php';
         break;
 
-    case "/Collage%20Project/Admin/Authentication":
+    case "/SSASIT/Admin/Authentication":
         require 'Pages/Authentication.php';
         break;
 
-    case '/Collage%20Project/Admin/Student':
-        require 'Pages/Student.php';
+    case '/SSASIT/Admin/entities':
+        require 'Pages/Entities.php';
+        break;
+    case '/SSASIT/Admin/Insert':
+        require 'Components/Insert.php';
         break;
 
     default:

@@ -115,7 +115,7 @@ $admin_username = isset($_SESSION['admin_username']) ? $_SESSION['admin_username
             <h1 class="header-title">SSASIT</h1>
         </div>
         <div class="header-right">
-            <a href="?logout=1" class="logout-btn" onclick="return confirmLogout()">
+            <a href="Dashboard?logout=1" class="logout-btn" onclick="return confirmLogout()">
                 <span>Logout</span>
             </a>
         </div>

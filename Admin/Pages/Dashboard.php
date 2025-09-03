@@ -21,6 +21,7 @@ if (isset($_GET['logout'])) {
     <link rel="stylesheet" href="index.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="Css/Dashboard.css?v=<?php echo time(); ?>">
 </head>
+
 <body>
     <?php require 'Components/Header.php'; ?>
     <div class="dashboard-container">
@@ -31,63 +32,63 @@ if (isset($_GET['logout'])) {
 
 <script>
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const welcomeSection = document.querySelector('.welcome-section');
-            const cards = document.querySelectorAll('.dashboard-card');
+    document.addEventListener('DOMContentLoaded', function () {
+        const welcomeSection = document.querySelector('.welcome-section');
+        const cards = document.querySelectorAll('.dashboard-card');
 
-            // Animate welcome section
-            welcomeSection.style.opacity = '0';
-            welcomeSection.style.transform = 'translateY(20px)';
+        // Animate welcome section
+        welcomeSection.style.opacity = '0';
+        welcomeSection.style.transform = 'translateY(20px)';
+
+        setTimeout(() => {
+            welcomeSection.style.transition = 'all 0.6s ease';
+            welcomeSection.style.opacity = '1';
+            welcomeSection.style.transform = 'translateY(0)';
+        }, 100);
+
+        // Animate cards with stagger effect
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
 
             setTimeout(() => {
-                welcomeSection.style.transition = 'all 0.6s ease';
-                welcomeSection.style.opacity = '1';
-                welcomeSection.style.transform = 'translateY(0)';
-            }, 100);
+                card.style.transition = 'all 0.6s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 200 + (index * 100));
+        });
+    });
 
-            // Animate cards with stagger effect
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
+    // Add touch support for mobile devices
+    if ('ontouchstart' in window) {
+        dashboardCards.forEach(card => {
+            card.addEventListener('touchstart', function () {
+                this.style.transform = 'translateY(-3px) scale(1.01)';
+            });
 
-                setTimeout(() => {
-                    card.style.transition = 'all 0.6s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 200 + (index * 100));
+            card.addEventListener('touchend', function () {
+                this.style.transform = 'translateY(0) scale(1)';
             });
         });
+    }
 
-        // Add touch support for mobile devices
-        if ('ontouchstart' in window) {
-            dashboardCards.forEach(card => {
-                card.addEventListener('touchstart', function () {
-                    this.style.transform = 'translateY(-3px) scale(1.01)';
-                });
-
-                card.addEventListener('touchend', function () {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
+    // Prevent back button after logout
+    window.addEventListener('popstate', function (e) {
+        if (window.location.search.includes('logout=success')) {
+            window.location.replace('Authentication');
         }
+    });
 
-        // Prevent back button after logout
-        window.addEventListener('popstate', function (e) {
-            if (window.location.search.includes('logout=success')) {
-                window.location.replace('Authentication');
-            }
-        });
+    // Security: Clear sensitive data on page unload
+    window.addEventListener('beforeunload', function () {
+        // Clear any sensitive data if needed
+        sessionStorage.clear();
+    });
 
-        // Security: Clear sensitive data on page unload
-        window.addEventListener('beforeunload', function () {
-            // Clear any sensitive data if needed
-            sessionStorage.clear();
-        });
-
-        // Add visual feedback for successful operations
-        function showSuccessMessage(message) {
-            const successDiv = document.createElement('div');
-            successDiv.style.cssText = `
+    // Add visual feedback for successful operations
+    function showSuccessMessage(message) {
+        const successDiv = document.createElement('div');
+        successDiv.style.cssText = `
                 position: fixed;
                 top: 20px;
                 right: 20px;
@@ -99,18 +100,29 @@ if (isset($_GET['logout'])) {
                 font-weight: 600;
                 z-index: 1000;
                 animation: slideIn 0.3s ease;
+
+                @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateX(100%);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
             `;
-            successDiv.textContent = message;
-            document.body.appendChild(successDiv);
+        successDiv.textContent = message;
+        document.body.appendChild(successDiv);
 
-            setTimeout(() => {
-                successDiv.remove();
-            }, 3000);
-        }
+        setTimeout(() => {
+            successDiv.remove();
+        }, 3000);
+    }
 
-        // Add CSS animation for success message
-        const style = document.createElement('style');
-        style.textContent = `
+    // Add CSS animation for success message
+    const style = document.createElement('style');
+    style.textContent = `
             @keyframes slideIn {
                 from {
                     opacity: 0;
@@ -122,6 +134,7 @@ if (isset($_GET['logout'])) {
                 }
             }
         `;
-        document.head.appendChild(style);
+    document.head.appendChild(style);
 </script>
+
 </html>

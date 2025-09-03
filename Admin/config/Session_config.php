@@ -4,7 +4,7 @@ function session_timeout() {
     if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > $timeout)) {
         session_unset();
         session_destroy();
-        header('Location: Authentication.php');
+        header('Location: Authentication');
         exit();
     }
 }
