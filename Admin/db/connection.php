@@ -5,33 +5,32 @@ define("DB_USER", "root");
 define("DB_PASS", "");
 define("DB_NAME", "ssasit");
 
-$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
 if (!$conn) {
-    // die("Connection failed" . mysqli_connect_error());
-    exit();
+    die("Connection failed" . mysqli_connect_error());
 }
-$Status = "Connected";
-// echo $Status;
+$Database_Create = 'create database demo';
+$Table_Create = `CREATE TABLE Person(
+    ID INT AUTO_INCREMENT PRIMARY KEY, 
+    First Name VARCHAR(100), 
+    Last Name VARCHAR(100), 
+    DOB DATE, 
+    Address VARCHAR(200), 
+    City VARCHAR(100), 
+    Mobile Number VARCHAR(10), 
+    Email VARCHAR(100), 
+    Gender ENUM("Male", "Female", "Other"), 
+    Qualification VARCHAR(100), 
+    Photo VARCHAR(100), 
+    Dept_ID INT, 
+    Admission_Date DATE, 
+    Status ENUM("Active", "Inactive", "Terminated", "Detained", "Graduated", "Under Graduation", "Post Graduation", "Resigned"), 
+    Designation ENUM("Student", "Professor", "Assistant Prof.", "Lab Assistant", "HOD", "Dean", "Principal")
+)`;
+// mysqli_query($conn, $Database_Create);
+// define("DB_NAME", "demo");
+// mysqli_select_db($conn, DB_NAME);
+// mysqli_query($conn, $Table_Create);
+// echo "Connected successfully";
 
-// require '../Querys/Insert Data.php';
-
-// $entity_type = 'student';
-
-// $data = [
-//     "First Name" => "pritesh",
-//     "Last Name" => "godavariya",
-//     "Date of Birth" => "01-01-2005",
-//     "Address" => '6334 nilkanth',
-//     "City" => 'ahmedabad',
-//     "Mobile" => '9876543210',
-//     "Email" => 'pritesh@gmail.com',
-//     "Gender" => 'male',
-//     "Qualification" => '12th',
-//     "Photo" => 'SSASIT.png',
-//     "Department" => '1',
-//     ($entity_type == 'faculty') ? "Joining Date" : "Admission Date" => '2020-01-01',
-//     "Status" => 'active',
-//     "Designation" => 'Student',
-// ];
-// echo insert($conn, $data, $entity_type);
 ?>
