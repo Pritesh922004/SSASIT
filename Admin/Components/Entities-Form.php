@@ -409,184 +409,254 @@
         enctype='multipart/form-data' method="post">
         <!-- Personal Information Section -->
         <!-- Insert?type=<?php echo $entity_type; ?> -->
-        <div class="form-section">
-            <h2 class="section-title">Personal Information</h2>
+        <?php if ($entity_type == 'student' || $entity_type == 'faculty') { ?>
+            <div class="form-section">
+                <h2 class="section-title">Personal Information</h2>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="firstName">First Name *</label>
-                    <input type="text" id="firstName" name="firstName" required pattern="[A-Za-z]{2,30}"
-                        title="First name should contain only letters (2-30 characters)" class="input-fields">
-                    <span class="error-message"></span>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required pattern="[A-Za-z]{2,30}"
+                            title="First name should contain only letters (2-30 characters)" class="input-fields">
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required pattern="[A-Za-z]{2,30}"
+                            title="Last name should contain only letters (2-30 characters)" class="input-fields">
+                        <span class="error-message"></span>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="lastName">Last Name *</label>
-                    <input type="text" id="lastName" name="lastName" required pattern="[A-Za-z]{2,30}"
-                        title="Last name should contain only letters (2-30 characters)" class="input-fields">
-                    <span class="error-message"></span>
-                </div>
-            </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dob">Date of Birth *</label>
+                        <input type="date" id="dob" name="dob" min="1990-01-01" max="2010-12-31" required
+                            class="input-fields">
+                        <span class="error-message"></span>
+                    </div>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="dob">Date of Birth *</label>
-                    <input type="date" id="dob" name="dob" min="1990-01-01" max="2010-12-31" required
-                        class="input-fields">
-                    <span class="error-message"></span>
-                </div>
-
-                <div class="form-group">
-                    <label for="gender">Gender *</label>
-                    <select id="gender" name="gender" required>
-                        <option value="">Select Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-                    <span class="error-message"></span>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group full-width">
-                    <label for="address">Address *</label>
-                    <textarea id="address" name="address" pattern=".{10,200}"
-                        title="Address should be 10-200 characters long" placeholder="Enter complete address"
-                        required></textarea>
-                    <span class="error-message"></span>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="city">City *</label>
-                    <select id="city" name="city" required>
-                        <option value="" selected>Select City</option>
-                        <!-- <input type="text" id="city" name="city"  placeholder="Search"> -->
-                    </select>
-                    <span class="error-message"></span>
+                    <div class="form-group">
+                        <label for="gender">Gender *</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <span class="error-message"></span>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="mobile">Mobile Number *</label>
-                    <input type="tel" id="mobile" name="mobile" pattern="[6-9][0-9]{9}"
-                        title="Mobile number should be 10 digits starting with 6-9"
-                        placeholder="Enter 10-digit mobile number" required class="input-fields">
-                    <span class="error-message"></span>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" title="Please enter a valid email address"
-                        placeholder="student@example.com" required class="input-fields">
-                    <span class="error-message"></span>
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="address">Address *</label>
+                        <textarea id="address" name="address" pattern=".{10,200}"
+                            title="Address should be 10-200 characters long" placeholder="Enter complete address"
+                            required></textarea>
+                        <span class="error-message"></span>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="photo"><?php echo $entity_type; ?> Photo</label>
-                    <input type="file" id="photo" name="photo" accept="image/jpeg,image/jpg,image/png"
-                        title="Please select a JPG or PNG image" class="input-fields">
-                    <span class="error-message"></span>
-                </div>
-            </div>
-        </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City *</label>
+                        <select id="city" name="city" required>
+                            <option value="" selected>Select City</option>
+                            <!-- <input type="text" id="city" name="city"  placeholder="Search"> -->
+                        </select>
+                        <span class="error-message"></span>
+                    </div>
 
-        <!-- Academic Information Section -->
-        <div class="form-section">
-            <h2 class="section-title">Academic Information</h2>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="qualification">Qualification *</label>
-                    <select id="qualification" name="qualification" required>
-                        <option value="">Select Qualification</option>
-                        <?php if ($entity_type == 'faculty'): ?>
-                            <option value="bachelor">Bachelor's Degree</option>
-                            <option value="master">Master's Degree</option>
-                            <option value="phd">Ph.D.</option>
-                            <option value="postdoc">Post Doctorate</option>
-                        <?php else: ?>
-                            <option value="10th">10th Pass</option>
-                            <option value="12th">12th Pass</option>
-                            <option value="diploma">Diploma</option>
-                            <option value="graduate">Graduate</option>
-                            <option value="postgraduate">Post Graduate</option>
-                        <?php endif; ?>
-                    </select>
-                    <span class="error-message"></span>
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number *</label>
+                        <input type="tel" id="mobile" name="mobile" pattern="[6-9][0-9]{9}"
+                            title="Mobile number should be 10 digits starting with 6-9"
+                            placeholder="Enter 10-digit mobile number" required class="input-fields">
+                        <span class="error-message"></span>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="department">Department *</label>
-                    <select id="department" name="department" required>
-                        <option value="">Select Department</option>
-                        <option value="1">Computer Science Engineering</option>
-                        <option value="2">Information Technology</option>
-                        <option value="3">Electronics & Communication</option>
-                        <option value="4">Mechanical Engineering</option>
-                        <option value="5">Civil Engineering</option>
-                        <option value="6">Electrical Engineering</option>
-                    </select>
-                    <span class="error-message"></span>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" title="Please enter a valid email address"
+                            placeholder="abc@example.com" required class="input-fields">
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="photo"><?php echo $entity_type; ?> Photo</label>
+                        <input type="file" id="photo" name="photo" accept="image/jpeg,image/jpg,image/png"
+                            title="Please select a JPG or PNG image" class="input-fields">
+                        <span class="error-message"></span>
+                    </div>
                 </div>
             </div>
 
-            <?php if ($entity_type == 'faculty'): ?>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="designation">Designation *</label>
-                    <select id="designation" name="designation" required>
-                        <option value="">Select Designation</option>
-                        <option value="Professor">Professor</option>
-                        <option value="Assistant Prof.">Assistant Professor</option>
-                        <option value="Lab Assistant">Lab Assistant</option>
-                        <option value="HOD">Head of Department</option>
-                        <option value="Dean">Dean</option>
-                        <option value="Principal">Principal</option>
-                    </select>
-                    <span class="error-message"></span>
+            <!-- Academic Information Section -->
+            <div class="form-section">
+                <h2 class="section-title">Academic Information</h2>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="qualification">Qualification *</label>
+                        <select id="qualification" name="qualification" required>
+                            <option value="">Select Qualification</option>
+                            <?php if ($entity_type == 'faculty'): ?>
+                                <option value="bachelor">Bachelor's Degree</option>
+                                <option value="master">Master's Degree</option>
+                                <option value="phd">Ph.D.</option>
+                                <option value="postdoc">Post Doctorate</option>
+                            <?php else: ?>
+                                <option value="10th">10th Pass</option>
+                                <option value="12th">12th Pass</option>
+                                <option value="diploma">Diploma</option>
+                                <option value="graduate">Graduate</option>
+                                <option value="postgraduate">Post Graduate</option>
+                            <?php endif; ?>
+                        </select>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="department">Department *</label>
+                        <select id="department" name="department" required>
+                            <option value="">Select Department</option>
+                            <option value="1">Computer Science Engineering</option>
+                            <option value="2">Information Technology</option>
+                            <option value="3">Electronics & Communication</option>
+                            <option value="4">Mechanical Engineering</option>
+                            <option value="5">Civil Engineering</option>
+                            <option value="6">Electrical Engineering</option>
+                        </select>
+                        <span class="error-message"></span>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="experience">Experience (Years)</label>
-                    <input type="number" id="experience" name="experience" min="0" max="50"
-                        placeholder="Years of experience" class="input-fields">
-                    <span class="error-message"></span>
+                <?php if ($entity_type == 'faculty'): ?>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="designation">Designation *</label>
+                            <select id="designation" name="designation" required>
+                                <option value="">Select Designation</option>
+                                <option value="Professor">Professor</option>
+                                <option value="Assistant Prof.">Assistant Professor</option>
+                                <option value="Lab Assistant">Lab Assistant</option>
+                                <option value="HOD">Head of Department</option>
+                                <option value="Dean">Dean</option>
+                                <option value="Principal">Principal</option>
+                            </select>
+                            <span class="error-message"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experience">Experience (Years)</label>
+                            <input type="number" id="experience" name="experience" min="0" max="50"
+                                placeholder="Years of experience" class="input-fields">
+                            <span class="error-message"></span>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label
+                            for="admissionDate"><?php ($entity_type == 'faculty') ? print ('Joining') : print ('Admission'); ?>
+                            Date *</label>
+                        <input type="date" id="admissionDate" name="admissionDate" required min=<?php ($entity_type == 'faculty') ? print ("2010-01-01") : print ("2020-01-01"); ?> max="2030-12-31"
+                            class="input-fields">
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Status *</label>
+                        <select id="status" name="status" required>
+                            <option value="">Select Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Terminated">Terminated</option>
+                            <?php if ($entity_type == 'faculty'): ?>
+                                <option value="Resigned">Resigned</option>
+                            <?php else: ?>
+                                <option value="Inactive">Inactive</option>
+                                <option value="Detained">Detained</option>
+                                <option value="Graduated">Graduated</option>
+                                <option value="Under Graduation">Under Graduation</option>
+                                <option value="Post Graduation">Post Graduation</option>
+                            <?php endif; ?>
+                        </select>
+                        <span class="error-message"></span>
+                    </div>
                 </div>
             </div>
-            <?php endif; ?>
+        <?php } ?>
+        <?php if ($entity_type == 'department'): ?>
+            <!-- Department Information Section -->
+            <div class="form-section">
+                <h2 class="section-title">Department Information</h2>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="admissionDate"><?php ($entity_type == 'faculty') ? print ('Joining') : print ('Admission'); ?> Date *</label>
-                    <input type="date" id="admissionDate" name="admissionDate" required min=<?php ($entity_type == 'faculty') ? print ("2010-01-01") : print ("2020-01-01"); ?> max="2030-12-31"
-                        class="input-fields">
-                    <span class="error-message"></span>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="departmentName">Department Name *</label>
+                        <input type="text" id="departmentName" name="departmentName" required pattern="[A-Za-z\s&]{3,100}"
+                            title="Department name should contain only letters, spaces and & (3-100 characters)"
+                            placeholder="e.g., Computer Science Engineering" class="input-fields">
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="hodName">Head of Department (HOD) *</label>
+                        <select id="hodName" name="hodName" required>
+                            <option value="">Select HOD</option>
+                            <!-- Demo data - replace with SQL query later -->
+                            <option value="1">Dr. Rajesh Kumar (Professor)</option>
+                            <option value="2">Dr. Priya Sharma (Associate Professor)</option>
+                            <option value="3">Dr. Amit Patel (Professor)</option>
+                            <option value="4">Dr. Sunita Singh (Professor)</option>
+                            <option value="5">Dr. Vikram Mehta (Associate Professor)</option>
+                            <option value="6">Dr. Kavita Joshi (Professor)</option>
+                            <option value="7">Dr. Ravi Gupta (Professor)</option>
+                            <option value="8">Dr. Neha Agarwal (Associate Professor)</option>
+                            <option value="9">Dr. Suresh Yadav (Professor)</option>
+                            <option value="10">Dr. Pooja Verma (Associate Professor)</option>
+                        </select>
+                        <span class="error-message"></span>
+                    </div>
                 </div>
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="departmentDescription">Department Description</label>
+                        <textarea id="departmentDescription" name="departmentDescription" pattern=".{10,500}"
+                            title="Description should be 10-500 characters long"
+                            placeholder="Brief description about the department, its vision, mission, and specializations..."></textarea>
+                        <span class="error-message"></span>
+                    </div>
+                </div>
+                <div class="form-row">
 
-                <div class="form-group">
-                    <label for="status">Status *</label>
-                    <select id="status" name="status" required>
-                        <option value="">Select Status</option>
-                        <option value="Active">Active</option>
-                        <option value="Terminated">Terminated</option>
-                        <?php if ($entity_type == 'faculty'): ?>
-                            <option value="Resigned">Resigned</option>
-                        <?php else: ?>
+
+                    <div class="form-group">
+                        <label for="establishedYear">Established Year</label>
+                        <input type="number" id="establishedYear" name="establishedYear" min="1950" max="2024"
+                            placeholder="e.g., 2010" class="input-fields">
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="departmentStatus">Department Status *</label>
+                        <select id="departmentStatus" name="departmentStatus" required>
+                            <option value="">Select Status</option>
+                            <option value="Active">Active</option>
                             <option value="Inactive">Inactive</option>
-                            <option value="Detained">Detained</option>
-                            <option value="Graduated">Graduated</option>
-                            <option value="Under Graduation">Under Graduation</option>
-                            <option value="Post Graduation">Post Graduation</option>
-                        <?php endif; ?>
-                    </select>
-                    <span class="error-message"></span>
+                            <option value="Under Development">Under Development</option>
+                            <option value="Merged">Merged</option>
+                            <option value="Discontinued">Discontinued</option>
+                        </select>
+                        <span class="error-message"></span>
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php endif; ?>
+
         <!-- Form Buttons -->
         <div class="form-buttons">
             <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset Form</button>

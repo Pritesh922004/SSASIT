@@ -8,6 +8,7 @@ $admin_username = isset($_SESSION['admin_username']) ? $_SESSION['admin_username
         position: sticky;
         top: 0;
         z-index: 100;
+        /* padding: .4rem 0; */
     }
 
     .header-content {

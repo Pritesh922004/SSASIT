@@ -27,6 +27,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        border-radius: .5rem;
     }
 
     .dashboard-card:hover {
@@ -463,7 +464,8 @@
 
     // Student Functions
     function viewAllStudents() {
-        showSuccessMessage('View All Students functionality will be implemented soon!');
+        window.location.href = 'View?type=student';
+        // showSuccessMessage('View All Students functionality will be implemented soon!');
     }
 
     function addNewStudent() {
@@ -473,8 +475,10 @@
 
     // Faculty Functions
     function viewAllFaculty() {
-        showSuccessMessage('View All Faculty functionality will be implemented soon!');
-        console.log('View All Faculty clicked');
+        window.location.href = 'View?type=faculty';
+
+        // showSuccessMessage('View All Faculty functionality will be implemented soon!');
+        // console.log('View All Faculty clicked');
     }
 
     function addNewFaculty() {
@@ -485,11 +489,13 @@
 
     // Department Functions
     function viewAllDepartments() {
+        window.location.href = 'View?type=department';
         showSuccessMessage('View All Departments functionality will be implemented soon!');
         console.log('View All Departments clicked');
     }
 
     function addNewDepartment() {
+        window.location.href = 'entities?type=department';
         showSuccessMessage('Add New Department functionality will be implemented soon!');
         console.log('Add New Department clicked');
     }

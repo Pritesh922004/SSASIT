@@ -101,42 +101,6 @@ $status = isset($_GET['status']) ? $_GET['status'] : '';
 
         }, 3000);
     }
-    // function showSuccessMessage(message) {
-    //     const successDiv = document.createElement('div');
-    //     successDiv.style.cssText = `
-    //             position: fixed;
-    //             top: 20px;
-    //             right: 20px;
-    //             background: var(--success-color);
-    //             color: white;
-    //             padding: 1rem 1.5rem;
-    //             border-radius: 0.6rem;
-    //             font-family: var(--primary-font);
-    //             font-weight: 600;
-    //             z-index: 1000;
-    //             animation: slideIn 0.3s ease;
-    //         `;
-    //     successDiv.textContent = message;
-    //     document.body.appendChild(successDiv);
-
-    //     setTimeout(() => {
-    //         successDiv.remove();
-    //     }, 3000);
-    // }
-    // const style = document.createElement('style');
-    // style.textContent = `
-    //         @keyframes slideIn {
-    //             from {
-    //                 opacity: 0;
-    //                 transform: translateX(100%);
-    //             }
-    //             to {
-    //                 opacity: 1;
-    //                 transform: translateX(0);
-    //             }
-    //         }
-    //     `;
-    // document.head.appendChild(style);
     function removeUrlParameter(parameter) {
         // Create a URL object from the current URL
         const url = new URL(window.location.href);
@@ -148,8 +112,7 @@ $status = isset($_GET['status']) ? $_GET['status'] : '';
         window.history.replaceState({}, '', url.toString());
     }
 
-    // How to use the function:
-    // Assume the current URL is https://example.com/page?filter=popular&sort=asc
+
 </script>
 
-</html>
+</html
