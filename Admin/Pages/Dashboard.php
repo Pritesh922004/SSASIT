@@ -2,6 +2,7 @@
 require 'Querys/Count_Query.php';
 require 'Services/Verify-User.php';
 
+
 // Handle logout
 if (isset($_GET['logout'])) {
     session_start();
@@ -10,7 +11,30 @@ if (isset($_GET['logout'])) {
     header('Location: Authentication?logout=success');
     exit();
 }
-// print_r(Student_Count($conn,''));
+
+function getTotal($table = 'person', $designation = '', $status = '')
+{
+    global $conn;
+    $data = allCount($conn, $designation, $status,$table);
+    if (!$data) {
+        return 0;
+    }
+    $user = [];
+
+    while ($result = $data->fetch_assoc()) {
+
+        $user[] = $result;
+    }
+    return $user[0]['total'];
+}
+
+// $data = Student_Count($conn, '');
+$user = [];
+
+// while ($result = $data->fetch_assoc()) {
+//     $user[] = $result;
+// }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

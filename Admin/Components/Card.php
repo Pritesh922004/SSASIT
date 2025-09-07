@@ -236,19 +236,29 @@
                 admin</p>
             <div class="card-stats">
                 <div class="stat-item">
-                    <div class="stat-value">0</div>
+                    <div class="stat-value"><?php
+                    echo getTotal('person', 'Student', '');
+                    ?></div>
                     <div class="stat-label">Total Student</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">1</div>
+                    <div class="stat-value"><?php
+                    echo getTotal('person', 'Student', 'Active');
+                    ?></div>
                     <div class="stat-label">Active</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">1</div>
+                    <div class="stat-value"><?php
+                    echo getTotal('person', 'Student', 'Graduated');
+                    ?>
+                    </div>
                     <div class="stat-label">Graduate</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">1</div>
+                    <div class="stat-value"><?php
+                    echo getTotal('person', 'Student', 'Terminated');
+                    ?>
+                    </div>
                     <div class="stat-label">Terminated</div>
                 </div>
             </div>
@@ -273,19 +283,31 @@
                 departments.</p>
             <div class="card-stats">
                 <div class="stat-item">
-                    <div class="stat-value">45</div>
+                    <div class="stat-value"><?php
+                    echo getTotal('person', '', '');
+                    ?></div>
                     <div class="stat-label">Total Faculty</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">42</div>
-                    <div class="stat-label">Active Faculty</div>
+                    <div class="stat-value"><?php
+                    echo getTotal('person', 'Lab Assistant', 'Active');
+                    ?></div>
+                    <div class="stat-label">Lab Assistant</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">15</div>
+                    <div class="stat-value">
+                        <?php
+                        echo getTotal('person', 'Professor', 'Professor');
+                        ?>
+                    </div>
                     <div class="stat-label">Professors</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">30</div>
+                    <div class="stat-value">
+                        <?php
+                        echo getTotal('person', 'Assistant Prof.', 'Assistant Prof.');
+                        ?>
+                    </div>
                     <div class="stat-label">Assistant Prof.</div>
                 </div>
             </div>
@@ -310,15 +332,27 @@
                 operation for admin</p>
             <div class="card-stats">
                 <div class="stat-item">
-                    <div class="stat-value">6</div>
+                    <div class="stat-value">
+                        <?php
+                        echo getTotal('department', '', '');
+                        ?>
+                    </div>
                     <div class="stat-label">Total Departments</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">5</div>
+                    <div class="stat-value">
+                        <?php
+                        echo getTotal('department', '', 'Active');
+                        ?>
+                    </div>
                     <div class="stat-label">Active Departments</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">5</div>
+                    <div class="stat-value">
+                        <?php
+                        echo getTotal('person', 'HOD', 'Active');
+                        ?>
+                    </div>
                     <div class="stat-label">Total HOD's</div>
                 </div>
                 <div class="stat-item">
@@ -337,7 +371,7 @@
         </div>
     </div>
 
-    <div class="dashboard-card">
+    <!-- <div class="dashboard-card">
         <div class="card-header">
             <div class="card-icon">🔒</div>
             <h3 class="card-title">overall result</h3>
@@ -446,7 +480,7 @@
                 </button>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <script>
