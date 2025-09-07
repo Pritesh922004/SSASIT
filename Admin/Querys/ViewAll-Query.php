@@ -16,4 +16,5 @@ function viewAll($conn, $view_type)
         echo $th;
     }
 }
+
 ?>

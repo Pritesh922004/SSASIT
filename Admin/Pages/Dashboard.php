@@ -1,4 +1,5 @@
 <?php
+require 'Querys/Count_Query.php';
 require 'Services/Verify-User.php';
 
 // Handle logout
@@ -9,6 +10,7 @@ if (isset($_GET['logout'])) {
     header('Location: Authentication?logout=success');
     exit();
 }
+// print_r(Student_Count($conn,''));
 ?>
 <!DOCTYPE html>
 <html lang="en">

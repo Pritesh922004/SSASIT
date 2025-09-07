@@ -1,3 +1,4 @@
+<link rel="shortcut icon" href="Public/Images/SSASIT.png" type="image/x-icon">
 <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/fontawesome.css">
 
 <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/whiteboard-semibold.css">

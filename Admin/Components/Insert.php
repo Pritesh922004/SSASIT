@@ -43,6 +43,7 @@ else {
 if ($result) {
     header("Location: entities?type=$entity_type&status=success");
 } else {
+    // echo "Error: " . mysqli_error($conn);
     header("Location: entities?type=$entity_type&status=field");
 }
 
