@@ -297,7 +297,7 @@
                 <div class="stat-item">
                     <div class="stat-value">
                         <?php
-                        echo getTotal('person', 'Professor', 'Professor');
+                        echo getTotal('person', 'Professors', 'Professor');
                         ?>
                     </div>
                     <div class="stat-label">Professors</div>

@@ -2,10 +2,25 @@
 $result;
 // require 'db/connection.php';
 require 'Querys/Insert-Query.php';
+require 'Querys/Find_Last_Entry_Query.php';
+
+$id = findLastEntry($conn, 'person');
+
+if($id->num_rows > 0){
+    $row = $id->fetch_assoc();
+    $id = $row['ID'] + 1;
+}
 
 $entity_type = isset($_GET['type']) ? $_GET['type'] : '';
 
 if($entity_type === 'student' || $entity_type === 'faculty'){
+
+    $photo = $_FILES['avatar'];
+    $target_dir = "Public/uploads/";
+    $originalname = $photo['name'];
+    $fileextension = pathinfo($originalname, PATHINFO_EXTENSION);
+    $newfilename = $id."_".date('d-m-Y'). "." . $fileextension;
+
     $data = [
     "First Name" => $_POST['firstName'],
     "Last Name" => $_POST['lastName'],
@@ -16,7 +31,7 @@ if($entity_type === 'student' || $entity_type === 'faculty'){
     "Email" => $_POST['email'],
     "Gender" => $_POST['gender'],
     "Qualification" => $_POST['qualification'],
-    "Photo" => 'SSASIT.png',
+    "Photo" => (move_uploaded_file($photo['tmp_name'], $target_dir.$newfilename)) ? $newfilename : 'SSASIT.png',
     "Department" => $_POST['department'],
     "Status" => $_POST['status'],
     ($entity_type == 'faculty') ? "Joining Date" : "Admission Date" => $_POST['admissionDate'],
@@ -25,6 +40,7 @@ if($entity_type === 'student' || $entity_type === 'faculty'){
 ];
 $result = insert($conn, $data, $entity_type);
 }
+
 else {
     $data = [
         "Department Name" => $_POST['departmentName'],

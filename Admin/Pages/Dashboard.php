@@ -29,7 +29,7 @@ function getTotal($table = 'person', $designation = '', $status = '')
 }
 
 // $data = Student_Count($conn, '');
-$user = [];
+// $user = [];
 
 // while ($result = $data->fetch_assoc()) {
 //     $user[] = $result;

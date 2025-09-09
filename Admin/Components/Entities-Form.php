@@ -488,7 +488,7 @@
 
                     <div class="form-group">
                         <label for="photo"><?php echo $entity_type; ?> Photo</label>
-                        <input type="file" id="photo" name="photo" accept="image/jpeg,image/jpg,image/png"
+                        <input type="file" id="avatar" name="avatar" accept="image/jpeg,image/jpg,image/png"
                             title="Please select a JPG or PNG image" class="input-fields">
                         <span class="error-message"></span>
                     </div>
@@ -505,16 +505,16 @@
                         <select id="qualification" name="qualification" required>
                             <option value="">Select Qualification</option>
                             <?php if ($entity_type == 'faculty'): ?>
-                                <option value="bachelor">Bachelor's Degree</option>
-                                <option value="master">Master's Degree</option>
-                                <option value="phd">Ph.D.</option>
-                                <option value="postdoc">Post Doctorate</option>
+                                <option value="Bachelor's Degree">Bachelor's Degree</option>
+                                <option value="Master's Degree">Master's Degree</option>
+                                <option value="Ph.D.">Ph.D.</option>
+                                <option value="Post Doctorate">Post Doctorate</option>
                             <?php else: ?>
                                 <option value="10th">10th Pass</option>
                                 <option value="12th">12th Pass</option>
-                                <option value="diploma">Diploma</option>
-                                <option value="graduate">Graduate</option>
-                                <option value="postgraduate">Post Graduate</option>
+                                <option value="Diploma">Diploma</option>
+                                <option value="Under Graduate">Under Graduate</option>
+                                <!-- <option value="postgraduate">Post Graduate</option> -->
                             <?php endif; ?>
                         </select>
                         <span class="error-message"></span>
@@ -628,7 +628,7 @@
                         <label for="departmentDescription">Department Description</label>
                         <textarea id="departmentDescription" name="departmentDescription" pattern=".{10,500}"
                             title="Description should be 10-500 characters long"
-                            placeholder="Brief description about the department, its vision, mission, and specializations..."></textarea>
+                            placeholder="Brief description about the department, its vision, mission, and specializations..." required></textarea>
                         <span class="error-message"></span>
                     </div>
                 </div>
@@ -638,7 +638,7 @@
                     <div class="form-group">
                         <label for="establishedYear">Established Year</label>
                         <input type="number" id="establishedYear" name="establishedYear" min="1950" max="2024"
-                            placeholder="e.g., 2010" class="input-fields">
+                            placeholder="e.g., 2010" class="input-fields" required>
                         <span class="error-message"></span>
                     </div>
                     <div class="form-group">

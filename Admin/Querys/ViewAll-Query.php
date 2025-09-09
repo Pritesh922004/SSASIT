@@ -4,7 +4,10 @@ require 'db/connection.php';
 function viewAll($conn, $view_type)
 {
     try {
-        if ($view_type === 'student') {
+        if ($view_type === 'department') {
+            $Select = "select * from department";
+        }
+        elseif ($view_type === 'student') {
             $Select = "select * from person where Designation = '" . $view_type . "'";
             // $Select = "select * from person";
         }
