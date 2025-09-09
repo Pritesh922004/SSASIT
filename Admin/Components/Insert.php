@@ -1,6 +1,6 @@
 <?php
 $result;
-// require 'db/connection.php';
+require 'db/connection.php';
 require 'Querys/Insert-Query.php';
 require 'Querys/Find_Last_Entry_Query.php';
 

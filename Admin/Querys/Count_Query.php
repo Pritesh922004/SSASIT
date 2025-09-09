@@ -1,5 +1,5 @@
 <?php
-require 'db/connection.php';
+// require 'db/connection.php';
 
 function allCount($conn, $designation, $status, $table)
 {

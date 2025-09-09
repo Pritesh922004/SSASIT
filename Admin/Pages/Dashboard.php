@@ -1,4 +1,5 @@
 <?php
+require 'db/connection.php';
 require 'Querys/Count_Query.php';
 require 'Services/Verify-User.php';
 

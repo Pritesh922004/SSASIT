@@ -1,5 +1,5 @@
 <?php
-require 'db/connection.php';
+// require 'db/connection.php';
 
 function viewAll($conn, $view_type)
 {

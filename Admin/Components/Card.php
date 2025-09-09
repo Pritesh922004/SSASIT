@@ -523,7 +523,7 @@
 
     // Department Functions
     function viewAllDepartments() {
-        window.location.href = 'View?type=department';
+        // window.location.href = 'View?type=department';
         showSuccessMessage('View All Departments functionality will be implemented soon!');
         console.log('View All Departments clicked');
     }

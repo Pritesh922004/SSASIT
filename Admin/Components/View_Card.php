@@ -1,6 +1,4 @@
 <style>
-   
-
     /* Simple Rectangular Card */
     .user-card {
         position: relative;
@@ -48,7 +46,7 @@
         transition: transform 0.3s ease;
         flex-shrink: 0;
     } */
-/* 
+    /* 
     .profile-placeholder i {
         color: var(--secondary-color);
         font-size: 1.5rem;
@@ -345,31 +343,31 @@
         animation-delay: 0.4s;
     }
 </style>
-        <div class="user-card">
-            <div class="profile-placeholder">
-                <img alt="avatar" src="Public/uploads/<?php echo $value['Photo']; ?>" class="profile-img"></img>
+<div class="user-card">
+    <div class="profile-placeholder">
+        <img alt="avatar" src="Public/uploads/<?php echo $value['Photo']; ?>" class="profile-img"></img>
+    </div>
+    <div class="user-info">
+        <h3 class="user-name"><?php echo ucfirst($value['First_Name'] . " " . $value['Last_Name']); ?></h3>
+        <p class="enrollment-number"><?php echo $value['ID']; ?></p>
+    </div>
+    <div class="action-menu">
+        <button class="menu-btn">
+            <i class="fas fa-ellipsis-vertical"></i>
+        </button>
+        <div class="dropdown-menu">
+            <a href="SSASIT/Admin/Delete?Id=<?php echo $value['ID']?>" class="dropdown-item view-item">
+                <i class="fas fa-eye"></i>
+                View Details
+            </a>
+            <div class="dropdown-item edit-item">
+                <i class="fas fa-edit"></i>
+                Edit
             </div>
-            <div class="user-info">
-                <h3 class="user-name"><?php echo ucfirst($value['First_Name']." ".$value['Last_Name']); ?></h3>
-                <p class="enrollment-number"><?php echo $value['ID']; ?></p>
-            </div>
-            <div class="action-menu">
-                <button class="menu-btn">
-                    <i class="fas fa-ellipsis-vertical"></i>
-                </button>
-                <div class="dropdown-menu">
-                    <div class="dropdown-item view-item">
-                        <i class="fas fa-eye"></i>
-                        View Details
-                    </div>
-                    <div class="dropdown-item edit-item">
-                        <i class="fas fa-edit"></i>
-                        Edit
-                    </div>
-                    <div class="dropdown-item delete-item">
-                        <i class="fas fa-trash"></i>
-                        Delete
-                    </div>
-                </div>
+            <div class="dropdown-item delete-item">
+                <i class="fas fa-trash"></i>
+                Delete
             </div>
         </div>
+    </div>
+</div>
