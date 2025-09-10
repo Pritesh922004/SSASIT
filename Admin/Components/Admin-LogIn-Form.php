@@ -1,7 +1,7 @@
 <?php
 
 
-$error = "";
+$error = "a";
 $success = "";
 
 // Handle logout success message
