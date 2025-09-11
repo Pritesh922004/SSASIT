@@ -7,6 +7,7 @@ require 'Querys/Delete_Record_Query.php';
 // echo 'this view page';
 
 $view_type = isset($_GET['type']) ? $_GET['type'] : '';
+$status = isset($_GET['status']) ? $_GET['status'] : '';
 
 $data = viewAll($conn, $view_type);
 $user = [];
@@ -173,6 +174,7 @@ while ($result = $data->fetch_assoc()) {
             opacity: 0;
             transform: translateY(30px);
         }
+
         to {
             opacity: 1;
             transform: translateY(0);
@@ -180,12 +182,19 @@ while ($result = $data->fetch_assoc()) {
     }
 
     @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% {
+
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
             transform: translateY(0);
         }
+
         40% {
             transform: translateY(-10px);
         }
+
         60% {
             transform: translateY(-5px);
         }
@@ -195,6 +204,7 @@ while ($result = $data->fetch_assoc()) {
         0% {
             transform: rotate(0deg);
         }
+
         100% {
             transform: rotate(360deg);
         }
@@ -205,6 +215,7 @@ while ($result = $data->fetch_assoc()) {
             opacity: 0;
             transform: translateX(-30px);
         }
+
         to {
             opacity: 1;
             transform: translateX(0);
@@ -216,6 +227,7 @@ while ($result = $data->fetch_assoc()) {
             opacity: 0;
             transform: translateX(30px);
         }
+
         to {
             opacity: 1;
             transform: translateX(0);
@@ -227,6 +239,7 @@ while ($result = $data->fetch_assoc()) {
             opacity: 0;
             transform: translateY(30px);
         }
+
         to {
             opacity: 1;
             transform: translateY(0);
@@ -304,42 +317,107 @@ while ($result = $data->fetch_assoc()) {
             font-size: 0.9rem;
         }
     }
+
+    .success-message,
+    .field-error {
+        position: fixed;
+        bottom: 1rem;
+        right: 1.2rem;
+        background: var(--success-color);
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 0.6rem;
+        font-family: var(--primary-font);
+        font-weight: 600;
+        z-index: 1000;
+        animation: slideIn 0.3s ease;
+        transition: all .3s ease;
+        overflow: hidden;
+    }
+
+    .success-message::before,
+    .field-error::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        align-items: center;
+        bottom: 0;
+        height: 100%;
+        left: 0;
+        /* border-radius: 0.6rem; */
+        border-bottom: .3rem solid #ffe3e6;
+        animation: width 3s linear forwards
+    }
+
+    .success-message::before {
+        border-bottom: .3rem solid #e3ffe6;
+    }
+
+    .field-error {
+        background: var(--error-color);
+    }
+
+    @keyframes width {
+        to {
+            width: 0;
+        }
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(100%);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
 </style>
 
 <body>
     <?php require 'Components/Header.php'; ?>
+    <?php if ($status === 'success') { ?>
+        <div class="success-message">Record Deleted Successfully</div>
+    <?php } ?>
+    <?php if ($status === 'field') { ?>
+        <div class="field-error">Record Not Deleted</div>
+    <?php } ?>
 
     <?php if (empty($user)) { ?>
-    <div class="no-data-container">
-        <div class="no-data-icon">
-            <i class="fas fa-inbox"></i>
+        <div class="no-data-container">
+            <div class="no-data-icon">
+                <i class="fas fa-inbox"></i>
+            </div>
+            <h1 class="no-data-title">No <?php echo ucfirst($view_type); ?> Found</h1>
+            <p class="no-data-message">
+                It looks like there are no <?php echo $view_type; ?> records in the system yet.
+                Get started by adding your first <?php echo $view_type; ?> or return to the dashboard to explore other
+                options.
+            </p>
+            <div class="no-data-actions">
+                <a href="entities?type=<?php echo $view_type; ?>" class="action-button">
+                    <i class="fas fa-plus"></i>
+                    Add New <?php echo ucfirst($view_type); ?>
+                </a>
+                <a href="Dashboard" class="action-button secondary">
+                    <i class="fas fa-home"></i>
+                    Go to Dashboard
+                </a>
+            </div>
         </div>
-        <h1 class="no-data-title">No <?php echo ucfirst($view_type); ?> Found</h1>
-        <p class="no-data-message">
-            It looks like there are no <?php echo $view_type; ?> records in the system yet.
-            Get started by adding your first <?php echo $view_type; ?> or return to the dashboard to explore other options.
-        </p>
-        <div class="no-data-actions">
-            <a href="entities?type=<?php echo $view_type; ?>" class="action-button">
-                <i class="fas fa-plus"></i>
-                Add New <?php echo ucfirst($view_type); ?>
-            </a>
-            <a href="Dashboard" class="action-button secondary">
-                <i class="fas fa-home"></i>
-                Go to Dashboard
-            </a>
-        </div>
-    </div>
     <?php } ?>
 
     <div class="card-container">
         <?php foreach ($user as $key => $value) { ?>
-        <?php require 'Components/View_Card.php'; ?>
+            <?php require 'Components/View_Card.php'; ?>
         <?php } ?>
     </div>
 
 
     <script>
+        window.addEventListener('load', function () {<?php $data = viewAll($conn, $view_type);?>});
         // Three dot menu handlers
         document.querySelectorAll('.menu-btn').forEach(btn => {
             btn.addEventListener('click', function (e) {
@@ -411,6 +489,23 @@ while ($result = $data->fetch_assoc()) {
                 });
             }
         });
+        const successMessage = document.querySelector('.success-message,.field-error');
+        if (successMessage) {
+            setTimeout(() => {
+                successMessage.remove();
+                removeUrlParameter('status');
+            }, 3000);
+        }
+        function removeUrlParameter(parameter) {
+            // Create a URL object from the current URL
+            const url = new URL(window.location.href);
+
+            // Use the searchParams API to delete the specified parameter
+            url.searchParams.delete(parameter);
+
+            // Update the URL in the browser without reloading the page
+            window.history.replaceState({}, '', url.toString());
+        }
     </script>
 </body>
 

@@ -19,10 +19,13 @@ switch ($path) {
         require 'Pages/Entities.php';
         break;
     case '/SSASIT/Admin/Insert':
-        require 'Components/Insert.php';
+        require 'Services/Insert.php';
         break;
     case '/SSASIT/Admin/View':
         require 'Pages/View.php';
+        break;
+    case '/SSASIT/Admin/Delete':
+        require 'Services/Delete.php';
         break;
     default:
         // Handle 404 Not Found errors for all other paths

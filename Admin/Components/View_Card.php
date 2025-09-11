@@ -1,3 +1,6 @@
+<?php
+$type = isset($_GET['type']) ? $_GET['type'] : 'person';
+?>
 <style>
     /* Simple Rectangular Card */
     .user-card {
@@ -356,7 +359,7 @@
             <i class="fas fa-ellipsis-vertical"></i>
         </button>
         <div class="dropdown-menu">
-            <a href="SSASIT/Admin/Delete?Id=<?php echo $value['ID']?>" class="dropdown-item view-item">
+            <a href="View-Info?Id=<?php echo $value['ID'] ?>" class="dropdown-item view-item">
                 <i class="fas fa-eye"></i>
                 View Details
             </a>
@@ -364,10 +367,11 @@
                 <i class="fas fa-edit"></i>
                 Edit
             </div>
-            <div class="dropdown-item delete-item">
+            <a href="Delete?type=<?php echo $type ?>&Id=<?php echo $value['ID'] ?>"
+                class="dropdown-item delete-item">
                 <i class="fas fa-trash"></i>
                 Delete
-            </div>
+            </a>
         </div>
     </div>
 </div>

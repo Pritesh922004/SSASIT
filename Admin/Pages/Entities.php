@@ -98,7 +98,6 @@ $status = isset($_GET['status']) ? $_GET['status'] : '';
         setTimeout(() => {
             successMessage.remove();
             removeUrlParameter('status');
-
         }, 3000);
     }
     function removeUrlParameter(parameter) {
