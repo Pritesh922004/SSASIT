@@ -92,6 +92,7 @@ $status = isset($_GET['status']) ? $_GET['status'] : '';
     <?php require 'Components/Header.php'; ?>
     <?php require 'Components/Entities-Form.php'; ?>
 </body>
+
 <script>
     const successMessage = document.querySelector('.success-message,.field-error');
     if (successMessage) {

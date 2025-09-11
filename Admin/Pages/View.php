@@ -3,6 +3,7 @@ require 'db/connection.php';
 require 'Services/Verify-User.php';
 require 'Querys/ViewAll-Query.php';
 require 'Querys/Delete_Record_Query.php';
+require 'Querys/Count_Query.php';
 
 // echo 'this view page';
 

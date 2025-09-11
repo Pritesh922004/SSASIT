@@ -1,3 +1,19 @@
+<?php
+require 'db/connection.php';
+require 'Querys/ViewAll-Query.php';
+
+$department = viewAll($conn, 'department');
+$faculty = viewAll($conn, '');
+$dept = [];
+$fac = [];
+while ($result = $department->fetch_assoc()) {
+    $dept[] = $result;
+}
+while ($result = $faculty->fetch_assoc()) {
+    $fac[] = $result;
+}
+?>
+
 <style>
     /* Container */
     .container {
@@ -504,17 +520,21 @@
                         <label for="qualification">Qualification *</label>
                         <select id="qualification" name="qualification" required>
                             <option value="">Select Qualification</option>
+
                             <?php if ($entity_type == 'faculty'): ?>
+
                                 <option value="Bachelor's Degree">Bachelor's Degree</option>
                                 <option value="Master's Degree">Master's Degree</option>
                                 <option value="Ph.D.">Ph.D.</option>
                                 <option value="Post Doctorate">Post Doctorate</option>
+
                             <?php else: ?>
+
                                 <option value="10th">10th Pass</option>
                                 <option value="12th">12th Pass</option>
                                 <option value="Diploma">Diploma</option>
                                 <option value="Under Graduate">Under Graduate</option>
-                                <!-- <option value="postgraduate">Post Graduate</option> -->
+
                             <?php endif; ?>
                         </select>
                         <span class="error-message"></span>
@@ -524,12 +544,10 @@
                         <label for="department">Department *</label>
                         <select id="department" name="department" required>
                             <option value="">Select Department</option>
-                            <option value="1">Computer Science Engineering</option>
-                            <option value="2">Information Technology</option>
-                            <option value="3">Electronics & Communication</option>
-                            <option value="4">Mechanical Engineering</option>
-                            <option value="5">Civil Engineering</option>
-                            <option value="6">Electrical Engineering</option>
+                            <?php foreach ($dept as $key => $value) { ?>
+                                <option value="<?php echo $value['Dept_ID']; ?>"><?php echo $value['Dept_Name']; ?>
+                                </option>
+                            <?php } ?>
                         </select>
                         <span class="error-message"></span>
                     </div>
@@ -608,17 +626,10 @@
                         <label for="hodName">Head of Department (HOD) *</label>
                         <select id="hodName" name="hodName" required>
                             <option value="">Select HOD</option>
-                            <!-- Demo data - replace with SQL query later -->
-                            <option value="1">Dr. Rajesh Kumar (Professor)</option>
-                            <option value="2">Dr. Priya Sharma (Associate Professor)</option>
-                            <option value="3">Dr. Amit Patel (Professor)</option>
-                            <option value="4">Dr. Sunita Singh (Professor)</option>
-                            <option value="5">Dr. Vikram Mehta (Associate Professor)</option>
-                            <option value="6">Dr. Kavita Joshi (Professor)</option>
-                            <option value="7">Dr. Ravi Gupta (Professor)</option>
-                            <option value="8">Dr. Neha Agarwal (Associate Professor)</option>
-                            <option value="9">Dr. Suresh Yadav (Professor)</option>
-                            <option value="10">Dr. Pooja Verma (Associate Professor)</option>
+                            <?php foreach ($fac as $key => $value) { ?>
+                                <option value="<?php echo $value['ID']; ?>"><?php echo $value['First_Name'] . ' ' . $value['Last_Name'].' ('.$value['Designation'].')'; ?>
+                                </option>
+                            <?php } ?>
                         </select>
                         <span class="error-message"></span>
                     </div>
@@ -628,7 +639,8 @@
                         <label for="departmentDescription">Department Description</label>
                         <textarea id="departmentDescription" name="departmentDescription" pattern=".{10,500}"
                             title="Description should be 10-500 characters long"
-                            placeholder="Brief description about the department, its vision, mission, and specializations..." required></textarea>
+                            placeholder="Brief description about the department, its vision, mission, and specializations..."
+                            required></textarea>
                         <span class="error-message"></span>
                     </div>
                 </div>

@@ -18,7 +18,7 @@ function allCount($conn, $designation, $status, $table)
         }
 
 
-        if ($table == 'person') {
+        if ($table === 'person') {
             if ($designation == '') {
                 $Select = "select count(*) as total from $table where Designation != 'Student'";
                 return mysqli_query($conn, $Select);

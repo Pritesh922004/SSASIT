@@ -1,5 +1,9 @@
 <?php
-$type = isset($_GET['type']) ? $_GET['type'] : 'person';
+$type = isset($_GET['type']) && $_GET['type'] === 'department' ? $_GET['type'] : 'person';
+
+$result = allCount($conn, '', '', $type);
+$result = $result->fetch_assoc();
+
 ?>
 <style>
     /* Simple Rectangular Card */
@@ -330,21 +334,11 @@ $type = isset($_GET['type']) ? $_GET['type'] : 'person';
     }
 
     /* Stagger animation */
-    .user-card:nth-child(1) {
-        animation-delay: 0.1s;
+    <?php for ($i=1; $i <= $result['total']; $i++) {?>
+    .user-card:nth-child(<?php echo $i; ?>) {
+        animation-delay: <?php echo $i*0.1; ?>s;
     }
-
-    .user-card:nth-child(2) {
-        animation-delay: 0.2s;
-    }
-
-    .user-card:nth-child(3) {
-        animation-delay: 0.3s;
-    }
-
-    .user-card:nth-child(4) {
-        animation-delay: 0.4s;
-    }
+    <?php }?>
 </style>
 <div class="user-card">
     <div class="profile-placeholder">
